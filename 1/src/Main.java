@@ -31,16 +31,27 @@ public class Main {
         System.out.println("Mode = " + result);
     }
 
-    //todo
     public static void encrypt(String arg){
         arg = arg.toLowerCase();
         StringBuilder stringBuilder = new StringBuilder();
         for(int i = 0; i < arg.length(); ++i){
             if(i == arg.length() - 1){
-                stringBuilder.append((char)(((int)arg.charAt(i) - 97 + (int)arg.charAt(0) - 97) % 27));
+                //System.out.println("(int)(arg.charAt(i)) - 97 + (int)(arg.charAt(0)) - 97) = " + ((int)(arg.charAt(i)) - 97 + (int)(arg.charAt(0) - 97)));
+//                System.out.println("(int)(arg.charAt(i)) - 96 = " + ((int)(arg.charAt(i)) - 96));
+//                System.out.println("(int)(arg.charAt(0)) - 96 = " + ((int)(arg.charAt(0)) - 96));
+//                System.out.println("(int)(arg.charAt(i)) - 96 + (int)(arg.charAt(0)) - 96) = " + ((int)(arg.charAt(i)) - 96 + (int)(arg.charAt(0) - 96)));
+                stringBuilder.append((char)((
+                        (((((arg.charAt(i) - 96) + (arg.charAt(0)) - 96) % 26) + 96)
+                        ))));
                 break;
             }
-            stringBuilder.append((char)(((int)arg.charAt(i) - 97 + (int)arg.charAt(i + 1) - 97) % 27));
+            //System.out.println("(int)(arg.charAt(i)) - 97 + (int)(arg.charAt(i + 1)) - 97) = " + ((int)(arg.charAt(i)) - 97 + (int)(arg.charAt(i + 1)) - 97));
+//            System.out.println("(int)(arg.charAt(i)) - 96 = " + ((int)(arg.charAt(i)) - 96));
+//            System.out.println("(int)(arg.charAt(i+1)) - 96 = " + ((int)(arg.charAt(i+1)) - 96));
+//            System.out.println("(int)(arg.charAt(i)) - 96 + (int)(arg.charAt(i+1)) - 96) % 26 = " + (((int)(arg.charAt(i) - 96) + (int)(arg.charAt(i+1)) - 96) % 26));
+            stringBuilder.append((char)((
+                    (((((arg.charAt(i) - 96) + (arg.charAt(i+1)) - 96) % 26) + 96)
+                    ))));
         }
         System.out.println("Encrypted value of " + arg + " = " + stringBuilder.toString());
     }
